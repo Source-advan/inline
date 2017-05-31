@@ -1,14 +1,14 @@
-bot = dofile('/home/username/inline/utils.lua')
-json = dofile('/home/username/inline/JSON.lua')
+bot = dofile('/home/mahdi2/inline/utils.lua')
+json = dofile('/home/mahdi2/inline/JSON.lua')
 URL = require "socket.url"
 serpent = require("serpent")
 http = require "socket.http"
 https = require "ssl.https"
 redis = require('redis')
 db = redis.connect('127.0.0.1', 6379)
-BASE = '/home/username/inline/'
-SUDO = 30410709 --sudo id
-sudo_users = {30410709,123456789,Userid}
+BASE = '/home/mahdi2/inline/'
+SUDO = 350419590 --sudo id
+sudo_users = {350419590,Userid}
 BOTS = 00000000 --bot id
 bot_id = db:get(SUDO..'bot_id')
 function vardump(value)
@@ -760,7 +760,7 @@ end
           for k,v in pairs(list) do
           t = t..k.." - <code>"..v.."</code>\n" 
           end
-          t = t..'\nبرای مشاهده کاربر از دستور زیر استفاده کنید \n<code>/whois [آیدی کاربر]</code>\n مثال :\n <code>/whois 234458457</code>'
+          t = t..'\nبرای مشاهده کاربر از دستور زیر استفاده کنید \n<code>/whois [آیدی کاربر]</code>\n مثال :\n <code>/whois 123456789</code>'
           if #list == 0 then
           t = '<code>>لیست مالکان گروه خالی میباشد!</code>'
           end
@@ -882,7 +882,7 @@ end
             end
           tdcli_function({
       ID = "GetInlineQueryResults",
-      bot_user_id_ = 254778917,
+      bot_user_id_ = 342725931,
       chat_id_ = msg.chat_id_,
       user_location_ = {
         ID = "Location",
@@ -1285,7 +1285,68 @@ end
   -- help 
   if text and text == 'help' then
     if is_sudo(msg) then
-help = [[متن راهنمای مالک ربات ثبت نشده است.]]
+help = [[<code>>راهنمای مالکین گروه(اصلی-فرعی)</code>
+
+*<b>[/#!]settings</b> --<code>دریافت تنظیمات گروه</code>
+*<b>[/#!]setrules</b> --<code>تنظیم قوانین گروه</code>
+*<b>[/#!]modset</b> @username|reply|user-id --<code>تنظیم مالک فرعی جدید برای گروه با یوزرنیم|ریپلی|شناسه -فرد</code>
+*<b>[/#!]moddem</b> @username|reply|user-id --<code>حذف مالک فرعی از گروه با یوزرنیم|ریپلی|شناسه -فرد</code>
+*<b>[/#!]ownerlist</b> --<code>دریافت لیست مدیران اصلی</code>
+*<b>[/#!]managers</b> --<code>دریافت لیست مدیران فرعی گروه</code>
+*<b>[/#!]setlink</b> <code>link</code> <code>{لینک-گروه} --تنظیم لینک گروه</code>
+*<b>[/#!]link</b> <code>دریافت لینک گروه</code>
+*<b>[/#!]kick</b> @username|reply|user-id <code>اخراج کاربر با ریپلی|یوزرنیم|شناسه</code>
+<b>-------------------------------</b>
+<code>>راهنمای بخش حذف ها</code>
+*<b>[/#!]delete managers</b> <code>{حذف تمامی مدیران فرعی تنظیم شده برای گروه}</code>
+*<b>[/#!]delete welcome</b> <code>{حذف پیغام خوش آمدگویی تنظیم شده برای گروه}</code>
+*<b>[/#!]delete bots</b> <code>{حذف تمامی ربات های موجود در ابرگروه}</code>
+*<b>[/#!]delete silentlist</b> <code>{حذف لیست سکوت کاربران}</code>
+*<b>[/#!]delete filterlist</b> <code>{حذف لیست کلمات فیلتر شده در گروه}</code>
+<b>-------------------------------</b>
+<code>>راهنمای بخش خوش آمدگویی</code>
+*<b>[/#!]welcome enable</b> --<code>(فعال کردن پیغام خوش آمدگویی در گروه)</code>
+*<b>[/#!]welcome disable</b> --<code>(غیرفعال کردن پیغام خوش آمدگویی در گروه)</code>
+*<b>[/#!]setwelcome text</b> --<code>(تنظیم پیغام خوش آمدگویی جدید در گروه)</code>
+<b>-------------------------------</b>
+<code>>راهنمای بخش فیلترگروه</code>
+*<b>[/#!]mutechat</b> --<code>فعال کردن فیلتر تمامی گفتگو ها</code>
+*<b>[/#!]unmutechat</b> --<code>غیرفعال کردن فیلتر تمامی گفتگو ها</code>
+*<b>[/#!]mutechat number(h|m|s)</b> --<code>فیلتر تمامی گفتگو ها بر حسب زمان[ساعت|دقیقه|ثانیه]</code>
+<b>-------------------------------</b>
+<code>>راهنمای دستورات حالت سکوت کاربران</code>
+*<b>[/#!]silentuser</b> @username|reply|user-id <code>--افزودن کاربر به لیست سکوت با یوزرنیم|ریپلی|شناسه -فرد</code>
+*<b>[/#!]unsilentuser</b> @username|reply|user-id <code>--افزودن کاربر به لیست سکوت با یوزرنیم|ریپلی|شناسه -فرد</code>
+*<b>[/#!]silentlist</b> <code>--دریافت لیست کاربران حالت سکوت</code>
+<b>-------------------------------</b>
+<code>>راهنمای بخش فیلتر-کلمات</code>
+*<b>[/#!]filter word</b> <code>--افزودن عبارت جدید به لیست کلمات فیلتر شده</code>
+*<b>[/#!]unfilter word</b> <code>--حذف عبارت جدید از لیست کلمات فیلتر شده</code>
+*<b>[/#!]filterlist</b> <code>--دریافت لیست کلمات فیلتر شده</code>
+<b>-------------------------------</b>
+<code>>راهنمای دستورات تنظیمات ابر-گروه[فیلترها]</code>
+*<b>[/#!]lock|unlock link</b> --<code>(فعال سازی/غیرفعال سازی ارسال تبلیغات)</code>
+*<b>[/#!]lock|unlock username</b> --<code>(فعال سازی/غیرفعال سازی ارسال یوزرنیم)</code>
+*<b>[/#!]lock|unlock sticker</b> --<code>(فعال سازی/غیرفعال سازی ارسال برچسب)</code>
+*<b>[/#!]lock|unlock contact</b> --<code>(فعال سازی/غیرفعال سازی فیتلر  مخاطبین)</code>
+*<b>[/#!]lock|unlock english</b> --<code>(فعال سازی/غیرفعال سازی فیتلر  گفتمان(انگلیسی))</code>
+*<b>[/#!]lock|unlock persian</b> --<code>(فعال سازی/غیرفعال سازی فیتلر  گفتمان(فارسی))</code>
+*<b>[/#!]lock|unlock forward</b> --<code>(فعال سازی/غیرفعال سازی فیتلر  فوروارد)</code>
+*<b>[/#!]lock|unlock photo</b> --<code>(فعال سازی/غیرفعال سازی فیتلر  تصاویر)</code>
+*<b>[/#!]lock|unlock video</b> --<code>(فعال سازی/غیرفعال سازی فیلتر ویدئو)</code>
+*<b>[/#!]lock|unlock gif</b> --<code>(فعال سازی/غیرفعال سازی فیلتر تصاویر-متحرک)</code>
+*<b>[/#!]lock|unlock music</b> --<code>(فعال سازی/غیرفعال سازی فیلتر آهنگ(MP3))</code>
+*<b>[/#!]lock|unlock audio</b> --<code>(فعال سازی/غیرفعال سازی فیلتر صدا(Voice-Audio))</code>
+*<b>[/#!]lock|unlock text</b> --<code>(فعال سازی/غیرفعال سازی فیلتر متن)</code>
+*<b>[/#!]lock|unlock keyboard</b> --<code>(فعال سازی/غیرفعال سازی فیتلر  درون-خطی(کیبرد شیشه))</code>
+*<b>[/#!]lock|unlock tgservice</b> --<code>(فعال سازی/غیرفعال سازی فیتلر  پیام ورود-خروج افراد)</code>
+*<b>[/#!]lock|unlock pin</b> --<code>(مجاز/غیرمجاز کردن پین پیام توسط عضو عادی)</code>
+*<b>[/#!]lock|unlock number(h|m|s)</b> --<code>(مجاز/غیرمجاز کردن ارسال پیغام مکرر)</code>
+<b>-------------------------------</b>
+<code>>راهنمای بخش تنظیم پیغام مکرر</code>
+*<b>[/#!]floodmax number</b> --<code>تنظیم حساسیت نسبت به ارسال پیام مکرر</code>
+*<b>[/#!]floodtime</b> --<code>تنظیم حساسیت نسبت به ارسال پیام مکرر برحسب زمان</code>
+]]
 
   elseif is_owner(msg) then
     help = [[
